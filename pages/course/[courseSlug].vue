@@ -45,6 +45,27 @@
       <p class="q-mt-lg text-grey-8">
         {{ course?.content }}
       </p>
+      <q-separator class="q-mb-lg" />
+      <q-form class="q-gutter-y-md">
+        <q-btn
+          label="수강완료"
+          class="full-width"
+          color="green"
+          unelevated
+          :outline="completed ? false : true"
+          :icon="completed ? 'check' : undefined"
+          @click="completed = !completed"
+        />
+        <q-input
+          v-model="memo"
+          type="textarea"
+          outlined
+          dense
+          placeholder="메모를 작성해주세요."
+          rows="3"
+          autogrow
+        />
+      </q-form>
       <template #footer>
         <ClientOnly>
           <q-btn
@@ -82,9 +103,14 @@ console.log('[courseSlug].vue 컴포넌트 setup hooks');
 // const title = ref('');
 definePageMeta({
   key: (route) => route.fullPath,
-  title: 'My home page',
   // title: title.value,
+  title: 'My home page',
+  pageType: '',
+  keepalive: true,
+  alias: ['/lecture/:courseSlug'],
 });
+const memo = ref('');
+const completed = ref(false);
 
 console.log('route.meta.title ', route.meta);
 </script>

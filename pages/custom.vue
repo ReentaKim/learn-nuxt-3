@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-defindPageMeta({
+definePageMeta({
   layout: false,
 });
 </script>
